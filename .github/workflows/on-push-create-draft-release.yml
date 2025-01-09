@@ -4,10 +4,7 @@ name: Create new Release Draft
 on:
   push:
     branches:
-      - main
-    paths:
-      - 'src/**'
-      - 'pyproject.toml'
+      - new-release
   workflow_dispatch:
 
 jobs:
@@ -15,9 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.PAT }}
+        uses: actions/checkout@v4
+        #with:
+          #token: ${{ secrets.PAT }}
 
       - name: Bump version and push tag
         id: tag_version
@@ -63,4 +60,5 @@ jobs:
             LICENSE dist/*.tar.gz dist/*.whl
         env:
           TAG: ${{ steps.tag_version.outputs.new_tag }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           GH_TOKEN: ${{ secrets.PAT }}
