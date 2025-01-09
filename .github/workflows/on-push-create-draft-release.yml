@@ -59,12 +59,14 @@ jobs:
 
           gh release delete $TAG || echo "no tag existed"
 
-          gh release create \
-            -d \
-            --target main \
-            --generate-notes \
-            $TAG \
-            LICENSE dist/*.tar.gz dist/*.whl
+          gh release create $TAG ./dist/*.tgz
+
+          #gh release create \
+            #-d \
+            #--target main \
+            #--generate-notes \
+            #$TAG \
+            #LICENSE dist/*.tar.gz dist/*.whl
         env:
           TAG: v0.9.6
           github_token: ${{ secrets.GITHUB_TOKEN }}
