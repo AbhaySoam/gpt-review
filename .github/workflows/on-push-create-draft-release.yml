@@ -19,14 +19,14 @@ jobs:
         #with:
           #token: ${{ secrets.PAT }}
 
-      - name: Bump version and push tag
-        id: tag_version
-        uses: mathieudutour/github-tag-action@v6.1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          dry_run: true
-          tag_prefix: 'v'
-          default_bump: false
+      #- name: Bump version and push tag
+        #id: tag_version
+        #uses: mathieudutour/github-tag-action@v6.1
+        #with:
+          #github_token: ${{ secrets.GITHUB_TOKEN }}
+          #dry_run: true
+          #tag_prefix: 'v'
+          #default_bump: false
 
       #- name: Set Configurations
         #if: steps.tag_version.outputs.release_type
@@ -52,7 +52,9 @@ jobs:
           python -m flit build
 
       - if: steps.tag_version.outputs.release_type
-        run: echo $TAG
+        run: 
+          echo $TAG
+          ls -R dist
           gh release delete $TAG || echo "no tag existed"
 
           gh release create \
