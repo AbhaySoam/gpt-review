@@ -64,7 +64,7 @@ jobs:
             $TAG \
             LICENSE dist/*.tar.gz dist/*.whl
         env:
-          TAG: ${{ steps.tag_version.outputs.new_tag }}
+          TAG: v0.9.6
           github_token: ${{ secrets.GITHUB_TOKEN }}
           GH_TOKEN: ${{ github.token }}
           #GH_TOKEN: ${{ secrets.PAT }}
