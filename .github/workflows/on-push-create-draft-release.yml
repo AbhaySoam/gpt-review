@@ -54,7 +54,9 @@ jobs:
       #- if: steps.tag_version.outputs.release_type
       - run: 
           echo $TAG
-          ls -R dist
+
+          ls -R .
+
           gh release delete $TAG || echo "no tag existed"
 
           gh release create \
