@@ -59,7 +59,7 @@ jobs:
 
           gh release delete $TAG || echo "no tag existed"
 
-          gh release create $TAG ./dist/*.tgz
+          gh release create $TAG dist/gpt_review-0.9.6.tar.gz
 
           #gh release create \
             #-d \
